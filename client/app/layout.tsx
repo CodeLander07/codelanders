@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   description: "",
 };
 
+const geist = Geist({
+  subsets: ["latin"],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,9 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={``}
-      >
+      <body className={geist.className}>
         {children}
       </body>
     </html>

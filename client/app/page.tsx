@@ -1,11 +1,5 @@
+import Component from "@/components/ui/saa-s-template";
 
-
-const page = () => {
-  return (
-    <div>
-      Hello
-    </div>
-  )
+export default function Demo() {
+  return <Component />;
 }
-
-export default page
