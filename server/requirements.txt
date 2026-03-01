@@ -3,6 +3,7 @@ uvicorn[standard]
 sqlalchemy
 psycopg2-binary
 pydantic
+pydantic-settings
 python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
@@ -10,6 +11,7 @@ redis
 celery
 boto3
 pytesseract
+Pillow
 pdfplumber
 camelot-py[cv]
 chromadb

@@ -1,49 +1,71 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight, FileText, PieChart, ShieldCheck } from "lucide-react";
+import { FileText, PieChart, ShieldCheck, Palette, Search, BarChart3 } from "lucide-react";
+import { ServiceCarousel, type Service } from "@/components/ui/services-card";
+import HeroSection from "@/components/sections/hero-section";
+import ConnectSection from "@/components/sections/connect-section";
+
+const services: Service[] = [
+  {
+    number: "001",
+    title: "Document OCR",
+    description:
+      "Upload salary slips, Form 16, or bank statements. We extract structured data automatically.",
+    icon: FileText,
+    gradient: "from-purple-100 to-purple-200 dark:from-purple-900/50 dark:to-purple-800/50",
+  },
+  {
+    number: "002",
+    title: "Tax Computation",
+    description:
+      "Instant Old vs New Regime comparison with precise tax liability calculations.",
+    icon: BarChart3,
+    gradient: "from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50",
+  },
+  {
+    number: "003",
+    title: "Deduction Discovery",
+    description:
+      "Our AI surfaces hidden deductions under 80C, 80D, HRA and more — tailored to you.",
+    icon: Search,
+    gradient: "from-green-100 to-green-200 dark:from-green-900/50 dark:to-green-800/50",
+  },
+  {
+    number: "004",
+    title: "Smart Advisory",
+    description:
+      "Personalised guidance on investment and savings strategies to lower your tax outgo.",
+    icon: Palette,
+    gradient: "from-red-100 to-red-200 dark:from-red-900/50 dark:to-red-800/50",
+  },
+];
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] relative">
-      
-      {/* Hero Section */}
-      <section className="container px-4 py-24 mx-auto text-center flex flex-col items-center justify-center z-10">
+    <div className="flex flex-col items-center relative">
+
+      {/* 1 — Hero */}
+      <HeroSection />
+
+      {/* 2 — Features */}
+      <section className="container px-4 py-20 mx-auto z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
-            Simplify Your Taxes with {" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
-              Intelligence
-            </span>
-          </h1>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-            TaxMate is the one-stop solution that puts tax-saving intelligence right at your fingertips.
-            Secure document analysis, intelligent deduction discovery, and personalized guidance.
+          <h2 className="text-4xl font-bold tracking-tight mb-4">
+            Why TaxMate?
+          </h2>
+          <p className="text-white/50 max-w-xl mx-auto text-sm leading-relaxed">
+            Purpose-built to make filing less painful and savings more visible.
           </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/register">
-              <button className="flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                Start Saving Now <ArrowRight size={20} />
-              </button>
-            </Link>
-            <Link href="/login">
-              <button className="px-8 py-4 rounded-full font-semibold border border-white/20 hover:bg-white/10 transition-all text-white">
-                Sign In
-              </button>
-            </Link>
-          </div>
         </motion.div>
-      </section>
 
-      {/* Features Section */}
-      <section className="container px-4 py-20 mx-auto z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -85,6 +107,21 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
+      {/* 3 — Services Carousel */}
+      <section className="w-full py-20 z-10">
+        <div className="container mx-auto px-4 mb-12 max-w-6xl">
+          <h2 className="text-5xl font-bold tracking-tighter">Services.</h2>
+          <p className="mt-3 text-white/60 text-lg">
+            Everything you need to file smarter and save more.
+          </p>
+        </div>
+        <ServiceCarousel services={services} />
+      </section>
+
+      {/* 4 — Let's connect */}
+      <ConnectSection />
+
     </div>
   );
 }
+

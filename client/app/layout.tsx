@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
+import Image from 'next/image';
+import NavWrapper from '@/components/nav-wrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,36 +28,34 @@ export default function RootLayout({
         </div>
 
         <div className="relative z-10 flex flex-col min-h-screen">
-          <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-black/50 backdrop-blur-md">
-            <div className="container mx-auto flex h-16 items-center justify-between px-4">
-              <Link href="/" className="flex items-center space-x-2">
-                <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-                  TaxMate
-                </span>
-              </Link>
-              <nav className="flex items-center space-x-6 text-sm font-medium text-white/70">
-                <Link href="/dashboard" className="transition-colors hover:text-white">Dashboard</Link>
-                <Link href="/questionnaire" className="transition-colors hover:text-white">Questionnaire</Link>
-                <div className="h-4 w-px bg-white/10" />
-                <Link href="/login" className="transition-colors hover:text-white">Sign In</Link>
-                <Link
-                  href="/register"
-                  className="rounded-full bg-white px-4 py-2 text-black transition-transform hover:scale-105"
-                >
-                  Get Started
+          <NavWrapper>
+            <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-black/50 backdrop-blur-md">
+              <div className="container mx-auto flex h-20 items-center justify-between px-4">
+                <Link href="/" className="flex items-center space-x-2">
+                  <img src="/logo.png" alt="" className='h-16' />
                 </Link>
-              </nav>
-            </div>
-          </header>
+                <nav className="flex items-center">
+                  <Link
+                    href="/register"
+                    className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-transform hover:scale-105 hover:opacity-90"
+                  >
+                    Get Started
+                  </Link>
+                </nav>
+              </div>
+            </header>
+          </NavWrapper>
 
           <main className="flex-1">{children}</main>
 
-          <footer className="border-t border-white/5 bg-black/40 py-8 backdrop-blur-lg">
-            <div className="container mx-auto px-4 text-center text-sm text-white/40">
-              <p>We are not a certified tax authority. Your data is encrypted and auto-deleted.</p>
-              <p className="mt-2 text-white/20">© 2024 TaxMate. All rights reserved.</p>
-            </div>
-          </footer>
+          <NavWrapper>
+            <footer className="border-t border-white/5 bg-black/40 py-8 backdrop-blur-lg">
+              <div className="container mx-auto px-4 text-center text-sm text-white/40">
+                <p>We are not a certified tax authority. Your data is encrypted and auto-deleted.</p>
+                <p className="mt-2 text-white/20">© 2024 TaxMate. All rights reserved.</p>
+              </div>
+            </footer>
+          </NavWrapper>
         </div>
       </body>
     </html>

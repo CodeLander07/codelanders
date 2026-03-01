@@ -12,9 +12,12 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 120  # 2 hours for session
     
+    # Admin panel access key  (set ADMIN_SECRET_KEY env var in production)
+    ADMIN_SECRET_KEY: str = os.getenv("ADMIN_SECRET_KEY", "taxmate-admin-2026")
+
     # ChromaDB (Vector DB)
     CHROMA_PERSIST_DIRECTORY: str = "./chroma_db"
-    
+
     # Local fallback for document uploads
     UPLOAD_DIR: str = "./uploads"
 

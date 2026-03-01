@@ -4,6 +4,7 @@ from app.core.config import settings
 from app.db.session import engine
 from app.models import base
 from app.models.user import User, Questionnaire
+from app.models.tax_policy import TaxPolicy  # ensure table is created
 
 # Create database tables
 base.Base.metadata.create_all(bind=engine)
@@ -21,6 +22,18 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix="/api")
+
+# ── Startup: seed default policy if none exist ───────────────────────────────
+from app.db.session import SessionLocal
+from app.services.policy_engine import seed_default_policy
+
+@app.on_event("startup")
+def startup_seed():
+    db = SessionLocal()
+    try:
+        seed_default_policy(db)
+    finally:
+        db.close()
 
 @app.get("/")
 def read_root():
